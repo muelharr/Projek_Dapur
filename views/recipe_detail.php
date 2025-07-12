@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dapur Kreatif</title>
+    <link rel="stylesheet" type="text/css" href="views/css/style.css">
+</head>
+<body>
 <?php include 'header.php'; ?>
 <h2>Detail Resep</h2>
 <?php
@@ -163,3 +170,5 @@ if ($id) {
 }
 ?>
 <?php include 'footer.php'; ?>
+</body>
+</html>

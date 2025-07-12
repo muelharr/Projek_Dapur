@@ -210,5 +210,7 @@ switch ($action) {
         include __DIR__ . '/views/home.php';
         break;
 }
+
+
 // END OF ROUTING, NO DUPLICATE CODE BELOW THIS LINE
 //

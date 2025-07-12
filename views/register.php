@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dapur Kreatif</title>
+    <link rel="stylesheet" type="text/css" href="views/css/style.css">
+</head>
+<body>
 <?php include 'header.php'; ?>
 <h2>Register</h2>
 <?php if (isset($register_success) && $register_success === true): ?>
@@ -15,3 +22,6 @@
     <button type="submit">Register</button>
 </form>
 <?php include 'footer.php'; ?>
+    <!-- Konten halaman -->
+</body>
+</html>

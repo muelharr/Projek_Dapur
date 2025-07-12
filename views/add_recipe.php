@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dapur Kreatif</title>
+    <link rel="stylesheet" type="text/css" href="views/css/style.css">
+</head>
+<body>
 <?php include 'header.php'; ?>
 <h2>Tambah Resep</h2>
 <?php if (isset($add_success) && $add_success === true): ?>
@@ -34,3 +41,5 @@
     <button type="submit">Ajukan</button>
 </form>
 <?php include 'footer.php'; ?>
+</body>
+</html>

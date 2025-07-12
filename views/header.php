@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dapur Kreatif</title>
-    <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" type="text/css" href="views/css/style.css">
 </head>
 <body>
 <header style="position:relative;">

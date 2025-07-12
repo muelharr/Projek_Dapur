@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dapur Kreatif</title>
+    <link rel="stylesheet" type="text/css" href="views/css/style.css">
+</head>
+<body>
 <?php include 'header.php'; ?>
 <h2>Resep Terbaru</h2>
 <?php
@@ -18,3 +25,5 @@ else:
 endif;
 ?>
 <?php include 'footer.php'; ?>
+</body>
+</html>

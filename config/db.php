@@ -2,7 +2,7 @@
 $host = 'localhost';
 $db   = 'dapur_kreatif';
 $user = 'root';
-$pass = '12345';
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

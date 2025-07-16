@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dapur Kreatif</title>
+    <link rel="stylesheet" type="text/css" href="views/css/style.css">
+</head>
+<body>
 <?php include 'header.php'; ?>
 <h2>Login</h2>
 <?php if (isset($login_error)): ?>
@@ -11,3 +18,5 @@
     <button type="submit">Login</button>
 </form>
 <?php include 'footer.php'; ?>
+</body>
+</html>

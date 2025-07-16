@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dapur Kreatif</title>
+    <link rel="stylesheet" type="text/css" href="views/css/style.css">
+</head>
+<body>
 <?php include 'header.php'; ?>
 <h2>Edit Resep</h2>
 <?php
@@ -91,3 +98,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button type="submit">Ajukan Perubahan</button>
 </form>
 <?php include 'footer.php'; ?>
+</body>
+</html>

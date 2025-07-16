@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dapur Kreatif</title>
+    <link rel="stylesheet" type="text/css" href="views/css/style.css">
+</head>
+<body>
 <?php
 include 'header.php';
 require_once __DIR__ . '/../config/db.php';
@@ -60,3 +67,5 @@ $recipes = $recipeController->search($q, $kategori, $tingkat, $min_rating);
     <p>Tidak ada resep ditemukan.</p>
 <?php endif; ?>
 <?php include 'footer.php'; ?>
+</body>
+</html>

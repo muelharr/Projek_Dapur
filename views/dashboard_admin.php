@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dapur Kreatif</title>
+    <link rel="stylesheet" type="text/css" href="views/css/style.css">
+</head>
+<body>
 <?php include 'header.php'; ?>
 <h2>Dashboard Admin</h2>
 <!-- Logout hanya di header -->
@@ -88,3 +95,5 @@ if ($all_recipes && count($all_recipes) > 0): ?>
 endif;
 ?>
 <?php include 'footer.php'; ?>
+</body>
+</html>

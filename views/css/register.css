@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fallback container styling */
+.register-container {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+/* Heading color override */
+.register-container h2 {
+  color: #FFA94D;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .register-container {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+}

@@ -1,0 +1,22 @@
+/* views/css/foot.css */
+
+/* Fallback styling untuk footer jika Tailwind tidak tersedia */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Styling HR gradient fallback */
+hr {
+  border: none;
+  height: 4px;
+  background: linear-gradient(90deg, #FFA94D, #FFD93D);
+  margin-bottom: 1.5rem;
+}

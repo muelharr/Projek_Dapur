@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container khusus login */
+.login-container {
+  /* fallback jika Tailwind belum ter-load */
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+/* Pastikan form-field konsisten */
+.login-container input,
+.login-container button {
+  font-family: inherit;
+}
+
+/* Heading override (jika butuh) */
+.login-container h2 {
+  color: #FFA94D;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+}

@@ -1,0 +1,29 @@
+.recipe-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .recipe-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #FF8A65 0%, #FFD54F 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .favorite-star {
+            color: #FFB700;
+            text-shadow: 0 0 10px rgba(255, 183, 0, 0.5);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #F7931E, #FF6B35);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }

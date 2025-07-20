@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Dapur Kreatif</title>
-    <link rel="stylesheet" type="text/css" href="views/css/style.css">
+    <link rel="stylesheet" type="text/css" href="views/css/dash_ad.css">
 </head>
 <body>
 <?php include 'header.php'; ?>

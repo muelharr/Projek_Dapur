@@ -1,0 +1,153 @@
+.recipe-detail-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid #e5e7eb;
+  font-family: 'Segoe UI',sans-serif;
+  color: #1f2937;
+}
+
+/* ==============================
+   Judul & Metadata
+   ============================== */
+.recipe-detail-container h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+.recipe-detail-container p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+.recipe-detail-container strong {
+  color: #111827;
+}
+
+/* ==============================
+   Gambar Resep
+   ============================== */
+.recipe-detail-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ==============================
+   Section Titles (Deskripsi, Bahan, Langkah)
+   ============================== */
+.recipe-detail-container h4 {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ==============================
+   Rating & Favorit
+   ============================== */
+.recipe-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+.recipe-actions > * {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Star rating */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 1.5rem;
+}
+.star-rating input {
+  display: none;
+}
+.star-rating label {
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.2s;
+}
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #f59e0b; /* amber-500 */
+}
+
+/* ==============================
+   Tombol (Rating, Favorit, Komentar)
+   ============================== */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+}
+.btn-primary {
+  background-color: #f97316; /* orange-500 */
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #ea580c; /* orange-600 */
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  background-color: #e5e7eb; /* gray-200 */
+  color: #1f2937;
+}
+.btn-secondary:hover {
+  background-color: #d1d5db; /* gray-300 */
+  transform: translateY(-1px);
+}
+
+/* ==============================
+   Komentar
+   ============================== */
+.comment-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  resize: vertical;
+  font-family: inherit;
+  margin-bottom: 0.75rem;
+}
+.comment-form button {
+  /* gunakan .btn .btn-primary */
+}
+
+/* Daftar komentar */
+.comments-list {
+  margin-top: 2rem;
+}
+.comment-item {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 0;
+}
+.comment-item:last-child {
+  border-bottom: none;
+}
+.comment-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #6b7280; /* gray-500 */
+  margin-bottom: 0.5rem;
+}
+
+/* ==============================
+   Responsif
+   ============================== */
+@media (max-width: 640px) {
+  .recipe-detail-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+}

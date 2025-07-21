@@ -1,0 +1,98 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 30px;
+    color: #FF6B35; /* Warm color for the title */
+    font-size: 28px;
+}
+
+/* Form Styles */
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+form input[type="text"],
+form textarea,
+form select,
+form input[type="file"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 16px;
+}
+
+form textarea {
+    resize: vertical;
+    height: 120px;
+}
+
+form button {
+    padding: 12px 20px;
+    background-color: #FF6B35;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #F7931E;
+}
+
+/* Success/Failure Message */
+div[style*="color:green"], div[style*="color:red"] {
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+div[style*="color:green"] {
+    background-color: #dff0d8;
+    color: green;
+}
+
+div[style*="color:red"] {
+    background-color: #f2dede;
+    color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    form {
+        width: 90%;
+    }
+
+    form input[type="text"],
+    form textarea,
+    form select,
+    form input[type="file"] {
+        font-size: 14px;
+    }
+}

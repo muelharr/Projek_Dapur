@@ -6,7 +6,7 @@
 </head>
 <body>
 <?php include 'header.php'; ?>
-<h2>Dashboard Admin</h2>
+
 <!-- Logout hanya di header -->
 <div style="color:blue;">Selamat datang, Admin!</div>
 <h3>Manajemen Resep (Menunggu Konfirmasi)</h3>

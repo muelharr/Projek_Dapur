@@ -1,56 +1,61 @@
 <?php
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../controllers/CommentController.php';
+require_once __DIR__ . '/../controllers/RecipeController.php';
+require_once __DIR__ . '/../controllers/RatingController.php';
+require_once __DIR__ . '/../controllers/FavoriteController.php';
 
-// ↓——— Tangani kirim komentar ———↓
-if ($_SERVER['REQUEST_METHOD'] === 'POST'
-    && isset($_SESSION['user_id'])
-    && !empty($_POST['komentar'])
-    && !empty($_POST['recipe_id'])
-) {
-    $cc = new CommentController($pdo);
-    $cc->add(
+// Tangani pengiriman rating
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nilai'], $_POST['recipe_id'], $_SESSION['user_id'])) {
+    $recipe_id = intval($_POST['recipe_id']);
+    $user_id = $_SESSION['user_id'];
+    $rating = intval($_POST['nilai']);
+
+    // Redirect untuk menghindari pengiriman ulang formulir
+    header('Location: index.php?action=recipe_detail&id=' . $recipe_id);
+    exit;
+}
+
+// Tangani pengiriman komentar
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['komentar'], $_POST['recipe_id'], $_SESSION['user_id'])) {
+    $commentController = new CommentController($pdo);
+    $commentController->add(
         intval($_POST['recipe_id']),
         $_SESSION['user_id'],
         trim($_POST['komentar'])
     );
-    // Redirect kembali ke halaman detail
-    header('Location: index.php?action=recipe_detail&id=' . intval($_POST['recipe_id']));
+
+    // Redirect untuk menghindari pengiriman ulang formulir
+    header('Location: index.php?action=recipe_detail&id=' . $_POST['recipe_id']);
     exit;
 }
-// ↑——— END logika POST ———↑
-
-// Sekarang baru load controller resep, rating, dsb.
-require_once __DIR__ . '/../controllers/RecipeController.php';
-require_once __DIR__ . '/../controllers/RatingController.php';
-require_once __DIR__ . '/../controllers/FavoriteController.php';
-$recipeController   = new RecipeController($pdo);
-$ratingController   = new RatingController($pdo);
-$favoriteController = new FavoriteController($pdo);
 
 // Ambil data resep
-$id     = $_GET['id'] ?? null;
+$id = $_GET['id'] ?? null;
+$recipeController = new RecipeController($pdo);
+$ratingController = new RatingController($pdo);
+$favoriteController = new FavoriteController($pdo);
+
 $recipe = $id ? $recipeController->detail($id) : null;
 
 // izin lihat
 $can_view = $recipe &&
-    ($recipe['status']==='approved'
-     || ($_SESSION['user_id']??null)==$recipe['user_id']
-     || ($_SESSION['role']??'')==='admin');
+    ($recipe['status'] === 'approved'
+     || ($_SESSION['user_id'] ?? null) === $recipe['user_id']
+     || ($_SESSION['role'] ?? '') === 'admin');
 
-// data rating/fav/comments
-$avg         = $ratingController->getAverage($id) ?? ['avg_rating'=>0,'jumlah'=>0];
-$userRating  = $_SESSION['user_id'] ? $ratingController->getUserRating($id, $_SESSION['user_id']) : null;
-$isFav       = $_SESSION['user_id'] ? $favoriteController->isFavorite($_SESSION['user_id'], $id) : false;
-$comCtrl     = new CommentController($pdo);
-$comments    = $comCtrl->getByRecipe($id) ?? [];
+// Data rating/fav/comments
+$avg = $ratingController->getAverage($id) ?? ['avg_rating' => 0, 'jumlah' => 0];
+$userRating = $_SESSION['user_id'] ? $ratingController->getUserRating($id, $_SESSION['user_id']) : null;
+$isFav = $_SESSION['user_id'] ? $favoriteController->isFavorite($_SESSION['user_id'], $id) : false;
+$comments = (new CommentController($pdo))->getByRecipe($id) ?? [];
 
 ?><!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title><?= htmlspecialchars($recipe['judul']??'Detail Resep') ?></title>
+  <title><?= htmlspecialchars($recipe['judul'] ?? 'Detail Resep') ?></title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -112,26 +117,29 @@ $comments    = $comCtrl->getByRecipe($id) ?? [];
           <div class="flex items-center justify-between">
             <div>
               <p class="text-gray-700"><strong><?= $avg['jumlah'] ?></strong> Rating</p>
-              <p class="text-2xl font-bold"><?= number_format($avg['avg_rating'],1) ?>/5</p>
+              <p class="text-2xl font-bold"><?= number_format($avg['avg_rating'] ?? 0, 1) ?>/5</p>
             </div>
             <div class="flex items-center space-x-2">
               <?php if($_SESSION['user_id']): ?>
                 <!-- Form beri rating -->
                 <form method="post" action="index.php?action=add_rating" class="flex items-center space-x-1">
                   <input type="hidden" name="recipe_id" value="<?= $id ?>"/>
-                  <?php for($i=5;$i>=1;$i--): ?>
+                  <?php for($i = 5; $i >= 1; $i--): ?>
                     <input type="radio" id="star<?= $i ?>" name="nilai" value="<?= $i ?>" class="hidden"
-                      <?= ($userRating['nilai']??0)==$i?'checked':'';?>/>
+                           <?= isset($userRating['nilai']) && $userRating['nilai'] == $i ? 'checked' : ''; ?>/>
                     <label for="star<?= $i ?>" class="text-2xl cursor-pointer"
-                           style="color:<?= ($userRating['nilai']??0)>=$i?'#f59e0b':'#ccc' ?>;">&#9733;</label>
-                  <?php endfor;?>
+                           style="color: <?= isset($userRating['nilai']) && $userRating['nilai'] >= $i ? '#f59e0b' : '#ccc' ?>;">&#9733;</label>
+                  <?php endfor; ?>
+                  <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition">
+                    Berikan Rating
+                  </button>
                 </form>
                 <!-- Tombol favorit -->
                 <form method="get" action="index.php">
                   <input type="hidden" name="action" value="toggle_favorite"/>
                   <input type="hidden" name="id" value="<?= $id ?>"/>
                   <button type="submit"
-                          class="text-2xl <?= $isFav?'text-yellow-400':'text-gray-300' ?>">
+                          class="text-2xl <?= $isFav ? 'text-yellow-400' : 'text-gray-300' ?>">
                     &#9733;
                   </button>
                 </form>
@@ -163,13 +171,13 @@ $comments    = $comCtrl->getByRecipe($id) ?? [];
           <?php endif; ?>
 
           <!-- Daftar komentar -->
-          <?php if(count($comments)>0): ?>
+          <?php if(count($comments) > 0): ?>
             <div class="space-y-4 max-h-64 overflow-auto pr-2">
               <?php foreach($comments as $c): ?>
                 <div class="border-b last:border-none pb-3">
                   <div class="flex justify-between text-sm text-gray-500">
                     <span><?= htmlspecialchars($c['nama']) ?></span>
-                    <span><?= date('d-m-Y H:i',strtotime($c['created_at'])) ?></span>
+                    <span><?= date('d-m-Y H:i', strtotime($c['created_at'])) ?></span>
                   </div>
                   <p class="mt-1 text-gray-700"><?= htmlspecialchars($c['komentar']) ?></p>
                 </div>

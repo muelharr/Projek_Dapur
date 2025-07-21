@@ -1,0 +1,201 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f4f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h2, h3 {
+    color: #333;
+    text-align: center;
+    margin-top: 30px;
+}
+
+h2 {
+    font-size: 28px;
+    color: #FF6B35; /* Warm color for the title */
+}
+
+h3 {
+    margin-top: 20px;
+    color: #007BFF; /* Blue color for section headings */
+}
+
+/* Header Styles */
+header {
+    background-color: #FF6B35;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #007BFF;
+    border-radius: 5px;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+header a:hover {
+    background-color: #FF6B35; /* Match the header color for consistency */
+}
+
+/* Admin Welcome and Status */
+div {
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 20px;
+    background-color: #FFFAF1;
+    border: 1px solid #FFD699;
+    border-radius: 8px;
+    color: #FF6B35;
+}
+
+/* Recipe Management Styles */
+.recipe-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-container div {
+    border: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: #FFF8E1; /* Light yellow background for recipe entries */
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.recipe-container div:hover {
+    background-color: #FFEB3B; /* Bright yellow hover effect */
+}
+
+.recipe-container a {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.recipe-container a:hover {
+    color: #FF6B35;
+}
+
+/* Action Links as Buttons */
+.recipe-container a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007BFF; /* Blue button */
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.recipe-container a:hover {
+    background-color: #FF6B35; /* Orange button on hover */
+    transform: translateY(-2px); /* Button lift effect */
+}
+
+/* Specific Button Colors for Approve, Reject, Edit */
+.recipe-container a.setujui {
+    background-color: #28a745; /* Green for approve */
+}
+
+.recipe-container a.setujui:hover {
+    background-color: #218838;
+}
+
+.recipe-container a.tolak {
+    background-color: #dc3545; /* Red for reject */
+}
+
+.recipe-container a.tolak:hover {
+    background-color: #c82333;
+}
+
+.recipe-container a.hapus {
+    background-color: #ff5733; /* Dark orange for delete */
+}
+
+.recipe-container a.hapus:hover {
+    background-color: #e14d26;
+}
+
+/* Table Styles for All Recipes */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #FF6B35; /* Orange background for table headers */
+    color: white;
+    font-weight: bold;
+}
+
+table td {
+    color: #555;
+}
+
+table td a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+table td a:hover {
+    color: #FF6B35;
+}
+
+/* Delete Confirmation */
+a[onclick] {
+    color: red;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a[onclick]:hover {
+    color: #FF6B35;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .recipe-container {
+        width: 95%;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+}

@@ -1,3 +1,10 @@
+-- Tabel untuk foto-foto resep (gallery)
+CREATE TABLE recipe_photos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    recipe_id INT NOT NULL,
+    file_path VARCHAR(255) NOT NULL,
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
+);
 -- Buat database
 CREATE DATABASE IF NOT EXISTS dapur_kreatif;
 USE dapur_kreatif;
@@ -60,4 +67,19 @@ CREATE TABLE favorites (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
+);
+
+-- Tabel tags (hashtag buatan admin)
+CREATE TABLE tags (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- Tabel relasi resep-tag (banyak ke banyak)
+CREATE TABLE recipe_tags (
+    recipe_id INT NOT NULL,
+    tag_id INT NOT NULL,
+    PRIMARY KEY (recipe_id, tag_id),
+    FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );

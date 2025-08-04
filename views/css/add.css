@@ -1,3 +1,25 @@
+/* Tags Checkbox Styling */
+.tags-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.tags-checkboxes label {
+    background: #f0f0f0;
+    border-radius: 16px;
+    padding: 4px 12px;
+    font-weight: normal;
+    margin: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.tags-checkboxes label:hover {
+    background: #ffe0cc;
+}
+.tags-checkboxes input[type="checkbox"] {
+    margin-right: 4px;
+}
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif;
@@ -15,38 +37,42 @@ h2 {
 
 /* Form Container */
 form {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    padding: 30px;
-    width: 80%;
-    max-width: 600px;
-    margin: 30px auto;
-    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+    padding: 18px 16px;
+    width: 95%;
+    max-width: 420px;
+    margin: 18px auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* Form Labels and Inputs */
 label {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+    margin-top: 8px;
 }
 
 input[type="text"],
 textarea,
 select {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0 20px 0;
+    padding: 7px 9px;
+    margin: 6px 0 12px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    font-size: 13px;
 }
 
 textarea {
-    height: 150px;
+    height: 70px;
     resize: vertical;
+    min-height: 40px;
+    max-height: 120px;
 }
 
 input[type="file"] {
@@ -57,13 +83,14 @@ input[type="file"] {
 button {
     background: linear-gradient(135deg, #FF6B35, #F7931E);
     color: white;
-    padding: 12px 20px;
+    padding: 10px 0;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
     width: 100%;
+    margin-top: 10px;
 }
 
 button:hover {

@@ -77,7 +77,9 @@ switch ($action) {
         exit;
     case 'add_recipe':
         require_once __DIR__ . '/controllers/RecipeController.php';
+        require_once __DIR__ . '/controllers/RecipePhotoController.php';
         $recipeController = new RecipeController($pdo);
+        $photoController = new RecipePhotoController($pdo);
         $add_success = null;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $judul = $_POST['judul'] ?? '';
@@ -87,12 +89,20 @@ switch ($action) {
             $kategori = $_POST['kategori'] ?? '';
             $tingkat_kesulitan = $_POST['tingkat_kesulitan'] ?? '';
             $foto_url = '';
-            if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-                $ext = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
-                $newname = 'resep_' . time() . '_' . rand(1000,9999) . '.' . $ext;
-                $target = __DIR__ . '/uploads/' . $newname;
-                if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) {
-                    $foto_url = 'uploads/' . $newname;
+            $uploaded_files = [];
+            if (isset($_FILES['foto']) && is_array($_FILES['foto']['name'])) {
+                foreach ($_FILES['foto']['name'] as $i => $name) {
+                    if ($_FILES['foto']['error'][$i] === UPLOAD_ERR_OK) {
+                        $ext = pathinfo($name, PATHINFO_EXTENSION);
+                        $newname = 'resep_' . time() . '_' . rand(1000,9999) . '_' . $i . '.' . $ext;
+                        $target = __DIR__ . '/uploads/' . $newname;
+                        if (move_uploaded_file($_FILES['foto']['tmp_name'][$i], $target)) {
+                            $uploaded_files[] = 'uploads/' . $newname;
+                        }
+                    }
+                }
+                if (count($uploaded_files) > 0) {
+                    $foto_url = $uploaded_files[0]; // foto utama
                 }
             }
             $data = [
@@ -106,6 +116,17 @@ switch ($action) {
                 'tingkat_kesulitan' => $tingkat_kesulitan
             ];
             if ($recipeController->create($data)) {
+                $last_id = $pdo->lastInsertId();
+                if (count($uploaded_files) > 0) {
+                    $photoController->addPhotos($last_id, $uploaded_files);
+                }
+                // Simpan tags ke recipe_tags
+                if (!empty($_POST['tags']) && is_array($_POST['tags'])) {
+                    $stmt = $pdo->prepare("INSERT INTO recipe_tags (recipe_id, tag_id) VALUES (?, ?)");
+                    foreach ($_POST['tags'] as $tag_id) {
+                        $stmt->execute([$last_id, $tag_id]);
+                    }
+                }
                 echo "<script>location.href='index.php?action=dashboard';</script>";
                 exit;
             } else {
